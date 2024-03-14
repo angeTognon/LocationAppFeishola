@@ -50,11 +50,7 @@ class _ConnexionState extends State<Connexion> {
         
         userPref.setString('email',emailController.text);
         show = false;
-      Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => Accueil(),
-          ));
+      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => Accueil(),), (route) => false);
     } else {
       setState(() {
         show = false;

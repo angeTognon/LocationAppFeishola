@@ -44,6 +44,10 @@ dependencies:
   image_picker:
   country_picker: 
   lottie: 
+  intl:
+  flutter_typeahead:
+  url_launcher: 
+  carousel_slider: 
 
 dev_dependencies:
   flutter_test:

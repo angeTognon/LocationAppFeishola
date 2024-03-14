@@ -71,7 +71,7 @@ class _OnBoardingState extends State<OnBoarding> {
               children: [
                 InkWell(
                   onTap: dernierPage?(){
-                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Accueil()));
+                    Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => Accueil(),), (route) => false);
                   } : () {
                     
                     controller.jumpToPage(mainIndex+1);

@@ -1,14 +1,17 @@
 import 'dart:convert';
 import 'dart:io';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:location_app/accueil.dart';
 import 'package:location_app/connexion.dart';
 import 'package:country_picker/country_picker.dart';
 import 'package:location_app/main.dart';
 import 'package:location_app/wid.dart';
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 
 class Publier extends StatefulWidget {
   const Publier({super.key});
@@ -40,12 +43,16 @@ class _PublierState extends State<Publier> {
   var items = [
     'Cliquez ici',
     'Studio',
-    'Petit studio',
+    'Mini Studio',
     'Appartement',
-    'Deux chambres, un salon sanitaire',
+    'Chambre Simple',
+    'Chambre Toilette',
+    'Chambre Cuisine',
+    'Chambre Meublée',
+    'Maison'
   ];
-  
-    String dropdownvalueVille = 'Cliquez ici';
+
+  String dropdownvalueVille = 'Cliquez ici';
 
   // List of items in our dropdown menu
   var itemsVille = [
@@ -59,7 +66,6 @@ class _PublierState extends State<Publier> {
     'Rufisque',
     'Mbour',
   ];
-
 
   File? image;
   var uploadimage;
@@ -87,9 +93,11 @@ class _PublierState extends State<Publier> {
       base64String = _base64String;
       print(base64String);
     });
- 
-    var response = await http.post(Uri.parse(uploadurl),
-        body: {'image': base64String, 'mail': user_email});
+
+    var response = await http.post(Uri.parse(uploadurl), body: {
+      'image': base64String,
+      'mail': "$dropdownvalue" + "$randomNumber"
+    });
     if (response.statusCode == 200) {
       // print(response.body);
       var jsondata = json.decode(response.body);
@@ -103,12 +111,16 @@ class _PublierState extends State<Publier> {
     }
   }
 
-   publier() async {
+  String photoLink =
+      "https://agk007s.000webhostapp.com/comeup_location/article/";
+  String? temps;
+
+  publier() async {
     setState(() {
       show = true;
     });
     var url =
-        "https://agk007s.000webhostapp.com/comeup_location/publier.php?titre=$dropdownvalue&prix=${prixController.text}&pays=$Pays&ville=$dropdownvalueVille&quartier=${quartierController.text}&disponible=Oui&descriptionn=${descriptionController.text}&doucheInterne=$doucheInterne&collocationDispo=$collocation";
+        "https://agk007s.000webhostapp.com/comeup_location/publier.php?titre=$dropdownvalue&prix=${prixController.text}&pays=sen&ville=$dropdownvalueVille&quartier=${quartierController.text}&disponible=Oui&descriptionn=${descriptionController.text}&doucheInterne=$doucheInterne&collocationDispo=$collocation&mailss=$user_email&linkss=$photoLink$dropdownvalue$randomNumber${".jpg"}&temps=$temps";
     var response = await http.post(Uri.parse(url));
     print('Response status: ${response.statusCode}');
     print('Response body: ${response.body}');
@@ -124,19 +136,20 @@ class _PublierState extends State<Publier> {
             style: TextStyle(
                 fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),
           )));
-          uploadImage();
+      uploadImage();
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => Connexion(),
+            builder: (context) => Accueil(),
           ));
     } else {
       setState(() {
+        print(response.body);
         show = false;
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             backgroundColor: Colors.redAccent,
             content: Text(
-              "Erreur : Il semble que cette adresse mail a déjà été utilisée ",
+              "Erreur : Réessayez svp",
               style: TextStyle(
                   fontSize: 16,
                   color: Colors.white,
@@ -145,6 +158,9 @@ class _PublierState extends State<Publier> {
       });
     }
   }
+
+  Random random = new Random();
+  int? randomNumber;
 
   @override
   Widget build(BuildContext context) {
@@ -197,7 +213,7 @@ class _PublierState extends State<Publier> {
               ),
               h(10),
               Container(
-                padding: EdgeInsets.only(left: 20,top: 10 ),
+                padding: EdgeInsets.only(left: 20, top: 13),
                 width: MediaQuery.of(context).size.width,
                 height: 50,
                 decoration: BoxDecoration(
@@ -255,7 +271,6 @@ class _PublierState extends State<Publier> {
                 "3-Pays",
                 style: TextStyle(fontSize: 14, fontFamily: 'normal'),
               ),
-              
               h(10),
               Container(
                   padding: EdgeInsets.only(left: 20, top: 15),
@@ -285,20 +300,20 @@ class _PublierState extends State<Publier> {
                     borderRadius: BorderRadius.circular(10),
                     color: Color.fromARGB(255, 255, 255, 255)),
                 child: DropdownButton(
-                value: dropdownvalueVille,
-                isDense: true,
-                icon: const Icon(Icons.keyboard_arrow_down),
-                items: itemsVille.map((String itemsVille) {
-                  return DropdownMenuItem(
-                    value: itemsVille,
-                    child: Text(itemsVille),
-                  );
-                }).toList(),
-                onChanged: (String? newValue) {
-                  setState(() {
-                    dropdownvalueVille = newValue!;
-                  });
-                },
+                  value: dropdownvalueVille,
+                  isDense: true,
+                  icon: const Icon(Icons.keyboard_arrow_down),
+                  items: itemsVille.map((String itemsVille) {
+                    return DropdownMenuItem(
+                      value: itemsVille,
+                      child: Text(itemsVille),
+                    );
+                  }).toList(),
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      dropdownvalueVille = newValue!;
+                    });
+                  },
                 ),
               ),
               h(10),
@@ -513,7 +528,25 @@ class _PublierState extends State<Publier> {
                   ),
                 ),
               ),
-             
+              h(20),
+              Container(
+                  //show image here after choosing image
+                  child: uploadimage == null
+                      ? Container()
+                      : //if uploadimage is null then show empty container
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                                //elese show image here
+                                child: SizedBox(
+                                    height: 150,
+                                    child: Image.file(
+                                        uploadimage!) //load image from file
+                                    )),
+                          ],
+                        )),
+              h(10),
               h(20),
               show
                   ? Row(
@@ -525,10 +558,9 @@ class _PublierState extends State<Publier> {
                   : InkWell(
                       onTap: () {
                         // uploadImage();
-                        if (publierController.text == "" ||
+                        if (dropdownvalue == "" ||
                             prixController.text == "" ||
-                            Pays == "" ||
-                            villeController.text == "" ||
+                            dropdownvalueVille == "" ||
                             quartierController.text == "" ||
                             descriptionController.text == "" ||
                             doucheInterne == "" ||
@@ -544,6 +576,12 @@ class _PublierState extends State<Publier> {
                                 const Color.fromARGB(255, 147, 36, 28),
                           ));
                         } else {
+                          setState(() {
+                            randomNumber = random.nextInt(100000);
+                            print(
+                                "Generated Random Number Between 0 to 9: $randomNumber");
+                            temps = DateFormat('M/d/y').format(DateTime.now());
+                          });
                           publier();
                         }
                       },

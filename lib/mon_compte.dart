@@ -40,14 +40,13 @@ class _MonCompteState extends State<MonCompte> {
                         children: [
                           Container(
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(100),
-                              color: mainColor
-                            ),
+                                borderRadius: BorderRadius.circular(100),
+                                color: mainColor),
                             child: Center(
                               child: Icon(
                                 Icons.person_2_rounded,
                                 size: 80,
-                                color: Colors.white ,
+                                color: Colors.white,
                               ),
                             ),
                           ),
@@ -59,123 +58,140 @@ class _MonCompteState extends State<MonCompte> {
                         width: MediaQuery.of(context).size.width,
                         color: Colors.black,
                       ),
-                      h(20),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      snapshot.data![index]['typeCompte']=="Je veux publier des logements" ? Column(
                         children: [
-                          Text(
-                              "Etat du Compte : ",
-                              style : TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 17,fontFamily: 'noamrl2',
-                                  color: Color.fromARGB(174, 0, 0, 0)),
-                              ),
-                          Container(
-                            padding: EdgeInsets.all(10),
-                            decoration: BoxDecoration(
-                                color: Color.fromARGB(255, 248, 30, 14),
-                                borderRadius: BorderRadius.circular(10)),
-                            child: Text(
-                                "Non Activé",
-                                // snapshot.data![index]['etat'],
+                      h(20),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "Etat du Compte : ",
                                 style: TextStyle(
-                                    fontSize: 16, color: Colors.white),
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 17,
+                                    fontFamily: 'noamrl2',
+                                    color: Color.fromARGB(174, 0, 0, 0)),
+                              ),
+                              Container(
+                                padding: EdgeInsets.all(10),
+                                decoration: BoxDecoration(
+                                    color: Color.fromARGB(255, 248, 30, 14),
+                                    borderRadius: BorderRadius.circular(10)),
+                                child: Text(
+                                  "Non Activé",
+                                  // snapshot.data![index]['etat'],
+                                  style: TextStyle(
+                                      fontSize: 16, color: Colors.white),
                                 ),
-                          )
-                        ],
-                      ),
-                      h(10),
-                      InkWell(
-                        onTap: () {
-                          showDialog(context: context, builder: (context) => AlertDialog(
-                            title: Row(mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text("A lire Attentivement",style: TextStyle(
-                                  fontSize: 19,fontWeight: FontWeight.bold
-                                ),),
-                              ],
-                            ),
-                            actions: [
-                              ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  primary: mainColor,
-                                  padding: EdgeInsets.all(10)
-                                ),
-                                onPressed: (){
-
-                                // launchUrl(Uri.parse("${snapshot.data![index]['lien']}"));
-
-                              }, child: Text("Effectuer le paiement")),
-
-                              Row(mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                      primary: mainColor,
-                                      padding: EdgeInsets.all(10)
-                                    ),
-                                    onPressed: (){
-                                    Navigator.pop(context);
-                                  }, child: Text("Annuler")),
-                                ],
                               )
                             ],
-                            content: Container(
-                              padding: EdgeInsets.all(15),
-                              height: MediaQuery.of(context).size.height/2,
-                              width: MediaQuery.of(context).size.width,
-                              child: Column(
-                                children: [
-                                  Text("L'activation de votre compte requiet un paiement de 2000 F, une fois à vie, via l'opérateur FedaPay.",  style : TextStyle(
-                                    fontSize: 18,
-                                  ))
-                                ],
-                              ),
-                            ),
-                          ),);
-                        },
-                        child: Row(mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Container(
-                              padding: EdgeInsets.all(10),
-                              decoration: BoxDecoration(
-                                  color: mainColor,
-                                  borderRadius: BorderRadius.circular(10)),
-                              child: Text(
-                                  "Activer mon Compte",
-                               style:  TextStyle(fontSize: 16, color: Colors.white),
+                          ),
+                          h(10),
+                          InkWell(
+                            onTap: () {
+                              showDialog(
+                                context: context,
+                                builder: (context) => AlertDialog(
+                                  title: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        "A lire Attentivement",
+                                        style: TextStyle(
+                                            fontSize: 19,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ],
                                   ),
+                                  actions: [
+                                    ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            primary: mainColor,
+                                            padding: EdgeInsets.all(10)),
+                                        onPressed: () {
+                                          // launchUrl(Uri.parse("${snapshot.data![index]['lien']}"));
+                                        },
+                                        child: Text("Effectuer le paiement")),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                                primary: mainColor,
+                                                padding: EdgeInsets.all(10)),
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                            child: Text("Annuler")),
+                                      ],
+                                    )
+                                  ],
+                                  content: Container(
+                                    padding: EdgeInsets.all(15),
+                                    height:
+                                        MediaQuery.of(context).size.height / 2,
+                                    width: MediaQuery.of(context).size.width,
+                                    child: Column(
+                                      children: [
+                                        Text(
+                                            "L'activation de votre compte requiet un paiement de 2000 F, une fois à vie, via l'opérateur FedaPay.",
+                                            style: TextStyle(
+                                              fontSize: 18,
+                                            ))
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              );
+                            },
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  padding: EdgeInsets.all(10),
+                                  decoration: BoxDecoration(
+                                      color: mainColor,
+                                      borderRadius: BorderRadius.circular(10)),
+                                  child: Text(
+                                    "Activer mon Compte",
+                                    style: TextStyle(
+                                        fontSize: 16, color: Colors.white),
+                                  ),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                      ),
-                      h(20),
-                      Container(
-                        height: 1,
-                        width: MediaQuery.of(context).size.width,
-                        color: Colors.black,
-                      ),
+                          ),
+                          h(20),
+                          Container(
+                            height: 1,
+                            width: MediaQuery.of(context).size.width,
+                            color: Colors.black,
+                          ),
+                        ],
+                      ) : Text(""),
                       h(20),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                              "Nom et Prénom : ",
-                              style : TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 17,
-                                  color: Color.fromARGB(174, 0, 0, 0)),
-                              ),
+                            "Nom et Prénom : ",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 17,
+                                color: Color.fromARGB(174, 0, 0, 0)),
+                          ),
                           Container(
                             padding: EdgeInsets.all(5),
                             decoration: BoxDecoration(
                                 color: Color.fromARGB(75, 153, 55, 10),
                                 borderRadius: BorderRadius.circular(10)),
                             child: Text(
-                                snapshot.data![index]['nomPrenoms'],
-                                style : TextStyle(
-                                    fontSize: 16, color: const Color.fromARGB(255, 0, 0, 0)),
-                                ),
+                              snapshot.data![index]['nomPrenoms'],
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  color: const Color.fromARGB(255, 0, 0, 0)),
+                            ),
                           )
                         ],
                       ),
@@ -184,37 +200,37 @@ class _MonCompteState extends State<MonCompte> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                              "Pays : ",
-                              style : TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 17,
-                                  color: Color.fromARGB(174, 0, 0, 0)),
-                              ),
+                            "Pays : ",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 17,
+                                color: Color.fromARGB(174, 0, 0, 0)),
+                          ),
                           Container(
                             padding: EdgeInsets.all(5),
                             decoration: BoxDecoration(
                                 color: Color.fromARGB(75, 153, 55, 10),
                                 borderRadius: BorderRadius.circular(10)),
                             child: Text(
-                                snapshot.data![index]['pays'],
-                                style : TextStyle(
-                                    fontSize: 16, color: const Color.fromARGB(255, 0, 0, 0)),
-                                ),
+                              snapshot.data![index]['pays'],
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  color: const Color.fromARGB(255, 0, 0, 0)),
+                            ),
                           )
                         ],
                       ),
-
                       h(20),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                              "Numéro de téléphone : ",
-                              style : TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 17,
-                                  color: Color.fromARGB(174, 0, 0, 0)),
-                              ),
+                            "Numéro de téléphone : ",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 17,
+                                color: Color.fromARGB(174, 0, 0, 0)),
+                          ),
                           Container(
                             width: 150,
                             padding: EdgeInsets.all(5),
@@ -222,10 +238,12 @@ class _MonCompteState extends State<MonCompte> {
                                 color: Color.fromARGB(75, 153, 55, 10),
                                 borderRadius: BorderRadius.circular(10)),
                             child: Text(
-                                snapshot.data![index]['nomPrenoms'],
-                                style : TextStyle(
-                                    fontSize: 16, color: const Color.fromARGB(255, 0, 0, 0)),
-                                textAlign: TextAlign.center,),
+                              snapshot.data![index]['nomPrenoms'],
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  color: const Color.fromARGB(255, 0, 0, 0)),
+                              textAlign: TextAlign.center,
+                            ),
                           )
                         ],
                       ),
@@ -234,22 +252,23 @@ class _MonCompteState extends State<MonCompte> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                              "Email : ",
-                              style : TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 17,
-                                  color: Color.fromARGB(174, 0, 0, 0)),
-                              ),
+                            "Email : ",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 17,
+                                color: Color.fromARGB(174, 0, 0, 0)),
+                          ),
                           Container(
                             padding: EdgeInsets.all(5),
                             decoration: BoxDecoration(
                                 color: Color.fromARGB(75, 153, 55, 10),
                                 borderRadius: BorderRadius.circular(10)),
                             child: Text(
-                                snapshot.data![index]['email'],
-                                style : TextStyle(
-                                    fontSize: 16, color: const Color.fromARGB(255, 0, 0, 0)),
-                                ),
+                              snapshot.data![index]['email'],
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  color: const Color.fromARGB(255, 0, 0, 0)),
+                            ),
                           )
                         ],
                       ),
@@ -264,27 +283,28 @@ class _MonCompteState extends State<MonCompte> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                              "Type de compte : ",
-                              style : TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 17,
-                                  color: Color.fromARGB(174, 0, 0, 0)),
-                              ),
+                            "Type de compte : ",
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 17,
+                                color: Color.fromARGB(174, 0, 0, 0)),
+                          ),
                           Container(
                             padding: EdgeInsets.all(10),
                             decoration: BoxDecoration(
                                 color: Color.fromARGB(75, 153, 55, 10),
                                 borderRadius: BorderRadius.circular(10)),
                             child: Text(
-                                snapshot.data![index]['pays']=="Je veux publier des logements"? "Démarcheur/Proprio" :
-                                "Clients" ,style :
-                                TextStyle(
-                                    fontSize: 16, color: const Color.fromARGB(255, 0, 0, 0)),
-                                ),
+                              snapshot.data![index]['typeCompte']=="Je veux publier des logements"
+                                  ? "Courtier/Propriétaire"
+                                  : "Clients",
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  color: const Color.fromARGB(255, 0, 0, 0)),
+                            ),
                           )
                         ],
                       ),
-                     
                     ],
                   );
                 },
@@ -294,8 +314,8 @@ class _MonCompteState extends State<MonCompte> {
                 height: 50,
                 width: 50,
                 child: Center(
-                    child:
-                        Lottie.asset("assets/images/auto_loading.json",height: 150)));
+                    child: Lottie.asset("assets/images/auto_loading.json",
+                        height: 150)));
           },
         ),
       ),

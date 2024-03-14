@@ -25,6 +25,7 @@ class _InscriptionState extends State<Inscription> {
 
   bool isClicked1 = false;
   bool isClicked2 = false;
+  bool hide = true;
   String typeCompte = "";
   String Pays = "";
   String phoneCode = "";
@@ -56,10 +57,8 @@ class _InscriptionState extends State<Inscription> {
       print(base64String);
     });
 
-    var response = await http.post(Uri.parse(uploadurl), body: {
-      'image': base64String,
-      'mail' : emailController.text
-    });
+    var response = await http.post(Uri.parse(uploadurl),
+        body: {'image': base64String, 'mail': emailController.text});
     if (response.statusCode == 200) {
       // print(response.body);
       var jsondata = json.decode(response.body);
@@ -95,12 +94,13 @@ class _InscriptionState extends State<Inscription> {
             style: TextStyle(
                 fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),
           )));
-          uploadImage();
-      Navigator.pushReplacement(
+      uploadImage();
+      Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(
             builder: (context) => Connexion(),
-          ));
+          ),
+          (route) => false);
     } else {
       setState(() {
         show = false;
@@ -308,6 +308,7 @@ class _InscriptionState extends State<Inscription> {
                   setState(() {
                     isClicked1 = true;
                     isClicked2 = false;
+                    hide=true;
                     typeCompte = "Je cherche un logement";
                   });
                 },
@@ -331,6 +332,7 @@ class _InscriptionState extends State<Inscription> {
                 onTap: () {
                   setState(() {
                     isClicked2 = true;
+                    hide=false;
                     isClicked1 = false;
                     typeCompte = "Je veux publier des logements";
                   });
@@ -351,52 +353,58 @@ class _InscriptionState extends State<Inscription> {
                 ),
               ),
               h(10),
+              hide
+                  ? Text("")
+                  : Column(crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "6- Importez la photo de votre pièce d'identité",
+                          style: TextStyle(fontSize: 14, fontFamily: 'normal'),
+                        ),
+                        h(15),
+                        Container(
+                          padding: EdgeInsets.only(left: 10, right: 10),
+                          width: MediaQuery.of(context).size.width,
+                          height: 40,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(13),
+                              border: Border.all(color: Colors.black38)),
+                          child: InkWell(
+                            onTap: () {
+                              pickImage();
+                            },
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text("Ajouter une photo claire"),
+                                Icon(Icons.photo)
+                              ],
+                            ),
+                          ),
+                        ),
+                        h(20),
+                        Container(
+                            //show image here after choosing image
+                            child: uploadimage == null
+                                ? Container()
+                                : //if uploadimage is null then show empty container
+                                Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Container(
+                                          //elese show image here
+                                          child: SizedBox(
+                                              height: 150,
+                                              child: Image.file(
+                                                  uploadimage!) //load image from file
+                                              )),
+                                    ],
+                                  )),
+                        h(10),
+                      ],
+                    ),
               Text(
-                "6- Importez la photo de votre pièce d'identité",
-                style: TextStyle(fontSize: 14, fontFamily: 'normal'),
-              ),
-              h(15),
-              Container(
-                padding: EdgeInsets.only(left: 10, right: 10),
-                width: MediaQuery.of(context).size.width,
-                height: 40,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(13),
-                    border: Border.all(color: Colors.black38)),
-                child: InkWell(
-                  onTap: () {
-                    pickImage();
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text("Ajouter une photo claire"),
-                      Icon(Icons.photo)
-                    ],
-                  ),
-                ),
-              ),
-              h(20),
-              Container(
-                  //show image here after choosing image
-                  child: uploadimage == null
-                      ? Container()
-                      : //if uploadimage is null then show empty container
-                      Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Container(
-                                //elese show image here
-                                child: SizedBox(
-                                    height: 150,
-                                    child: Image.file(
-                                        uploadimage!) //load image from file
-                                    )),
-                          ],
-                        )),
-              h(10),
-              Text(
-                "7- Mot de passe",
+                "Mot de passe",
                 style: TextStyle(fontSize: 14, fontFamily: 'normal'),
               ),
               h(10),
@@ -434,53 +442,53 @@ class _InscriptionState extends State<Inscription> {
               ),
               h(20),
               show
-                  ? Row(mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      CircularProgressIndicator(),
-                    ],
-                  )
-                  : 
-              InkWell(
-                onTap: () {
-                  // uploadImage();
-                  if (nomPrenomController.text == "" ||
-                      Pays == "" ||
-                      numController.text == "" ||
-                      emailController.text == "" ||
-                      typeCompte == "" ||
-                      uploadimage == null ||
-                      mpController.text == "") {
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                      content: Text(
-                        "Veuillez remplir tous les champs !",
-                        style: TextStyle(
-                            fontFamily: 'normal', color: Colors.white),
-                      ),
-                      backgroundColor: const Color.fromARGB(255, 147, 36, 28),
-                    ));
-                  } else {
-                    inscription();
-                    
-                  }
-                },
-                child: Container(
-                  height: 50,
-                  width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                      color: mainColor,
-                      borderRadius: BorderRadius.circular(12)),
-                  child: Center(
-                    child: Text(
-                      "M'inscrire",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                        fontFamily: 'normal2',
+                  ? Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        CircularProgressIndicator(),
+                      ],
+                    )
+                  : InkWell(
+                      onTap: () {
+                        // uploadImage();
+                        if (nomPrenomController.text == "" ||
+                            Pays == "" ||
+                            numController.text == "" ||
+                            emailController.text == "" ||
+                            typeCompte == "" ||
+                            uploadimage == null ||
+                            mpController.text == "") {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text(
+                              "Veuillez remplir tous les champs !",
+                              style: TextStyle(
+                                  fontFamily: 'normal', color: Colors.white),
+                            ),
+                            backgroundColor:
+                                const Color.fromARGB(255, 147, 36, 28),
+                          ));
+                        } else {
+                          inscription();
+                        }
+                      },
+                      child: Container(
+                        height: 50,
+                        width: MediaQuery.of(context).size.width,
+                        decoration: BoxDecoration(
+                            color: mainColor,
+                            borderRadius: BorderRadius.circular(12)),
+                        child: Center(
+                          child: Text(
+                            "M'inscrire",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontFamily: 'normal2',
+                            ),
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                ),
-              ),
               h(10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,

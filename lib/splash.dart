@@ -22,10 +22,8 @@ class _SplashState extends State<Splash> {
       color: Color.fromARGB(255, 255, 255, 255),
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
-      child: Container(height: 50,width: 50,
-        child: Center(
-          child: Image.asset("assets/images/logo.png",scale: 2,),
-        ),
+      child: Center(
+        child: Image.asset("assets/images/new.png",scale: 2,),
       ),
     );
   }

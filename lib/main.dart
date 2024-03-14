@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:is_first_run/is_first_run.dart';
 import 'package:location_app/accueil.dart';
+import 'package:location_app/splash.dart';
 import 'package:location_app/onBoarding.dart';
 import 'package:location_app/resultat.dart';
-import 'package:location_app/splash.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 

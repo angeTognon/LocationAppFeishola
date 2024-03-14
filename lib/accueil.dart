@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:location_app/details.dart';
 import 'package:location_app/resultat.dart';
+import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:location_app/wid.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:lottie/lottie.dart';
 
 class Accueil extends StatefulWidget {
   const Accueil({super.key});
@@ -10,6 +14,19 @@ class Accueil extends StatefulWidget {
 }
 
 class _AccueilState extends State<Accueil> {
+  final List<String> searchElements = [
+    'Studio',
+    'Mini Studio',
+    'Appartement',
+    'Chambre Simple',
+    'Chambre Toilette',
+    'Chambre Cuisine',
+    'Chambre Meublée',
+    'Maison',
+  ];
+
+  String selectedElement = '';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,18 +39,20 @@ class _AccueilState extends State<Accueil> {
               child: Stack(
                 children: [
                   Positioned(
+                    top: 0,
                     child: Container(
                       padding: EdgeInsets.all(10),
                       color: mainColor,
                       height: 150,
                       width: MediaQuery.of(context).size.width,
-                      child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Container(
                             width: 200,
                             margin: EdgeInsets.only(left: 5),
                             child: Text(
-                              "Décrouvrez votre prochain logement de qualité et à moindre coût depuis votre smartphone",
+                              "Découvrez un logement abordable de qualité depuis votre smartphone",
                               style: TextStyle(
                                   fontFamily: 'normal2',
                                   fontSize: 14,
@@ -47,8 +66,7 @@ class _AccueilState extends State<Accueil> {
                             decoration: BoxDecoration(
                                 // color: const Color.fromARGB(255, 100, 43, 43),
                                 image: DecorationImage(
-                                    image: AssetImage(
-                                        "assets/images/logo_.png"),
+                                    image: AssetImage("assets/images/new.png"),
                                     fit: BoxFit.fill)),
                           )
                         ],
@@ -61,25 +79,44 @@ class _AccueilState extends State<Accueil> {
                     child: Row(
                       children: [
                         Container(
-                            padding: EdgeInsets.only(left: 20, right: 20),
-                            height: 50,
-                            width: MediaQuery.of(context).size.width / 1.2,
-                            decoration: BoxDecoration(
-                                color: Color.fromARGB(255, 235, 235, 235),
-                                borderRadius: BorderRadius.circular(20)),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "Rechercher",
-                                  style: TextStyle(fontSize: 14),
-                                ),
-                                Icon(
-                                  Icons.search,
-                                  color: Colors.black,
-                                )
-                              ],
-                            )),
+                          padding: EdgeInsets.only(left: 20, right: 20),
+                          height: 50,
+                          width: MediaQuery.of(context).size.width / 1.2,
+                          decoration: BoxDecoration(
+                              color: Color.fromARGB(255, 235, 235, 235),
+                              borderRadius: BorderRadius.circular(20)),
+                          child: TypeAheadField(
+                            textFieldConfiguration: TextFieldConfiguration(
+                              decoration: InputDecoration(
+                                  hintText: 'Cliquez ici pour Rechercher',
+                                  hintStyle: TextStyle(
+                                      fontFamily: 'normal2', fontSize: 15)),
+                            ),
+                            suggestionsCallback: (pattern) {
+                              return searchElements
+                                  .where((fruit) => fruit
+                                      .toLowerCase()
+                                      .contains(pattern.toLowerCase()))
+                                  .toList();
+                            },
+                            itemBuilder: (context, suggestion) {
+                              return ListTile(
+                                title: Text(suggestion),
+                              );
+                            },
+                            onSuggestionSelected: (suggestion) {
+                              setState(() {
+                                selectedElement = suggestion;
+                                print(selectedElement);
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            Resultat(titre: selectedElement)));
+                              });
+                            },
+                          ),
+                        ),
                       ],
                     ),
                   )
@@ -94,19 +131,13 @@ class _AccueilState extends State<Accueil> {
             Container(
               margin: EdgeInsets.all(20),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
                     "Recherche par catégorie",
                     style: TextStyle(fontFamily: "normal"),
                   ),
-                  InkWell(
-                    onTap: () {},
-                    child: Text(
-                      "Voir tout",
-                      style: TextStyle(fontFamily: "normal2", color: mainColor),
-                    ),
-                  ),
+                  
                 ],
               ),
             ),
@@ -116,11 +147,15 @@ class _AccueilState extends State<Accueil> {
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: [
-                  Box1("assets/images/x0.png", "Appartements"),
-                  Box1("assets/images/x1.png", "Chambre simple"),
-                  Box1("assets/images/x2.png", "Studios"),
-                  Box1("assets/images/x3.png", "Appartements meublés"),
-                  w(20)
+                  Box1("assets/images/location1.jpg", "Studio"),
+                  Box1("assets/images/x1.png", "Mini Studio"),
+                  Box1("assets/images/x2.png", "Appartement"),
+                  Box1("assets/images/x2.png", "Chambre Simple"),
+                  Box1("assets/images/x3.png", "Chambre Toilette"),
+                  Box1("assets/images/x4.png", "Chambre Cuisine"),
+                  Box1("assets/images/x5.png", "Chambre Meublée"),
+                  Box1("assets/images/x1.png", "Maison"),
+                  w(20),
                 ],
               ),
             ),
@@ -129,365 +164,96 @@ class _AccueilState extends State<Accueil> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "Publication récente",
+                  "Mo Geuneu",
                   style: TextStyle(fontFamily: "normal", fontSize: 15),
                 ),
               ],
             ),
             h(20),
-            Container(height: 450,width: MediaQuery.of(context).size.width/1.14,
-              child: Stack(
-                children: [
-                  Container(
-                    padding: EdgeInsets.all(10),
-                    height: 250,
-                    width: 150,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        image: DecorationImage(
-                            image: AssetImage("assets/images/x1.png"),
-                            fit: BoxFit.cover)),
-                    child: Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
+            Container(
+              height: 220,
+              width: MediaQuery.of(context).size.width,
+              child: FutureBuilder(
+                future: flashVente(),
+                builder: (BuildContext context, AsyncSnapshot snapshot) {
+                  if (snapshot.hasError) {
+                    return Center(
+                      child: Text(
+                          "Erreur de chargement. Veuillez relancer l'application"),
+                    );
+                  }
+                  if (snapshot.hasData) {
+                    return ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: 5,
+                      itemBuilder: (context, index) {
+                        return Wrap(
                           children: [
-                            Container(
-                              height: 40,
-                              width: 40,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  color: Colors.orange),
-                              child: Center(
-                                child: Icon(Icons.favorite, size: 17),
-                              ),
+                            InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => Details(
+                                              imgPath: snapshot.data![index]
+                                                  ['linkss'],
+                                              type: snapshot.data![index]
+                                                  ['titre'],
+                                              id: int.parse(
+                                                  snapshot.data![index]['id']),
+                                            )));
+                              },
+                              child: FlashVente(
+                                  context,
+                                  snapshot.data![index]['linkss'],
+                                  snapshot.data![index]['titre']),
                             )
                           ],
-                        ),
-                        h(60),
-                        Container(
-                          height: 40,
-                          width: 140,
-                          color: Color.fromARGB(171, 255, 153, 0),
-                          child: Text(
-                            "Chambre Salon Sanitaire",
-                            style: TextStyle(fontSize: 13, fontFamily: 'normal'),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                        h(60),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
-                              children: [
-                                Icon(
-                                  Icons.star,
-                                  color: Color.fromARGB(252, 0, 255, 42),
-                                  size: 15,
-                                ),
-                                Icon(Icons.star,
-                                    color: Color.fromARGB(252, 0, 255, 42),
-                                    size: 15),
-                                Icon(Icons.star,
-                                    color: Color.fromARGB(252, 0, 255, 42),
-                                    size: 15),
-                                Icon(Icons.star_border_outlined,
-                                    color: Color.fromARGB(252, 0, 255, 42),
-                                    size: 15),
-                                Icon(Icons.star_border_outlined,
-                                    color: Color.fromARGB(252, 0, 255, 42),
-                                    size: 15),
-                              ],
-                            ),
-                            Container(
-                              padding: EdgeInsets.all(2.5),
-                              height: 24,
-                              width: 50,
-                              decoration: BoxDecoration(color: mainColor),
-                              child: Center(
-                                child: Text(
-                                  "Voir",
-                                  style: TextStyle(
-                                      color: Colors.white, fontFamily: 'normal2'),
-                                ),
-                              ),
-                            )
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                  Positioned(right: 0,
-                    child: Container(
-                      margin: EdgeInsets.only(left: 15),
-                      padding: EdgeInsets.all(10),
-                      height: 170,
-                      width: 150,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          image: DecorationImage(
-                              image: AssetImage("assets/images/x2.png"),
-                              fit: BoxFit.cover)),
-                      child: Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Container(
-                                height: 40,
-                                width: 40,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: Colors.orange),
-                                child: Center(
-                                  child: Icon(Icons.favorite, size: 17),
-                                ),
-                              )
-                            ],
-                          ),
-                          h(20),
-                          Container(
-                            height: 40,
-                            width: 140,
-                            color: Color.fromARGB(171, 255, 153, 0),
-                            child: Text(
-                              "Deux chambres salon sanitaire ",
-                              style: TextStyle(fontSize: 13, fontFamily: 'normal'),
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                          h(20),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                children: [
-                                  Icon(
-                                    Icons.star,
-                                    color: Color.fromARGB(252, 0, 255, 42),
-                                    size: 15,
-                                  ),
-                                  Icon(Icons.star,
-                                      color: Color.fromARGB(252, 0, 255, 42),
-                                      size: 15),
-                                  Icon(Icons.star,
-                                      color: Color.fromARGB(252, 0, 255, 42),
-                                      size: 15),
-                                  Icon(Icons.star_border_outlined,
-                                      color: Color.fromARGB(252, 0, 255, 42),
-                                      size: 15),
-                                  Icon(Icons.star_border_outlined,
-                                      color: Color.fromARGB(252, 0, 255, 42),
-                                      size: 15),
-                                ],
-                              ),
-                              Container(
-                                padding: EdgeInsets.all(2.5),
-                                height: 24,
-                                width: 50,
-                                decoration: BoxDecoration(color: mainColor),
-                                child: Center(
-                                  child: Text(
-                                    "Voir",
-                                    style: TextStyle(
-                                        color: Colors.white, fontFamily: 'normal2'),
-                                  ),
-                                ),
-                              )
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    top: 270,
-                    child: Container(
-                      margin: EdgeInsets.only(left: 0),
-                      padding: EdgeInsets.all(10),
-                      height: 170,
-                      width: 150,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          image: DecorationImage(
-                              image: AssetImage("assets/images/x3.png"),
-                              fit: BoxFit.cover)),
-                      child: Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Container(
-                                height: 40,
-                                width: 40,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: Colors.orange),
-                                child: Center(
-                                  child: Icon(Icons.favorite, size: 17),
-                                ),
-                              )
-                            ],
-                          ),
-                          h(20),
-                          Container(
-                            height: 30,
-                            width: 140,
-                            color: Color.fromARGB(171, 255, 153, 0),
-                            child: Center(
-                              child: Text(
-                                "Studios ",
-                                style:
-                                    TextStyle(fontSize: 13, fontFamily: 'normal'),
-                                textAlign: TextAlign.center,
-                              ),
-                            ),
-                          ),
-                          h(30),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                children: [
-                                  Icon(
-                                    Icons.star,
-                                    color: Color.fromARGB(252, 0, 255, 42),
-                                    size: 15,
-                                  ),
-                                  Icon(Icons.star,
-                                      color: Color.fromARGB(252, 0, 255, 42),
-                                      size: 15),
-                                  Icon(Icons.star,
-                                      color: Color.fromARGB(252, 0, 255, 42),
-                                      size: 15),
-                                  Icon(Icons.star_border_outlined,
-                                      color: Color.fromARGB(252, 0, 255, 42),
-                                      size: 15),
-                                  Icon(Icons.star_border_outlined,
-                                      color: Color.fromARGB(252, 0, 255, 42),
-                                      size: 15),
-                                ],
-                              ),
-                              Container(
-                                padding: EdgeInsets.all(2.5),
-                                height: 24,
-                                width: 50,
-                                decoration: BoxDecoration(color: mainColor),
-                                child: Center(
-                                  child: Text(
-                                    "Voir",
-                                    style: TextStyle(
-                                        color: Colors.white, fontFamily: 'normal2'),
-                                  ),
-                                ),
-                              )
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    bottom: 10,right: 0,
-                    child: Container(
-                      margin: EdgeInsets.only(left: 15),
-                      padding: EdgeInsets.all(10),
-                      height: 250,
-                      width: 150,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          image: DecorationImage(
-                              image: AssetImage("assets/images/x4.png"),
-                              fit: BoxFit.cover)),
-                      child: Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Container(
-                                height: 40,
-                                width: 40,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: Colors.orange),
-                                child: Center(
-                                  child: Icon(Icons.favorite, size: 17),
-                                ),
-                              )
-                            ],
-                          ),
-                          h(60),
-                          Container(
-                            height: 40,
-                            width: 140,
-                            color: Color.fromARGB(171, 255, 153, 0),
-                            child: Text(
-                              "Appartement meublé",
-                              style: TextStyle(fontSize: 13, fontFamily: 'normal'),
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                          h(60),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                children: [
-                                  Icon(
-                                    Icons.star,
-                                    color: Color.fromARGB(252, 0, 255, 42),
-                                    size: 15,
-                                  ),
-                                  Icon(Icons.star,
-                                      color: Color.fromARGB(252, 0, 255, 42),
-                                      size: 15),
-                                  Icon(Icons.star,
-                                      color: Color.fromARGB(252, 0, 255, 42),
-                                      size: 15),
-                                  Icon(Icons.star_border_outlined,
-                                      color: Color.fromARGB(252, 0, 255, 42),
-                                      size: 15),
-                                  Icon(Icons.star_border_outlined,
-                                      color: Color.fromARGB(252, 0, 255, 42),
-                                      size: 15),
-                                ],
-                              ),
-                              Container(
-                                padding: EdgeInsets.all(2.5),
-                                height: 24,
-                                width: 50,
-                                decoration: BoxDecoration(color: mainColor),
-                                child: Center(
-                                  child: Text(
-                                    "Voir",
-                                    style: TextStyle(
-                                        color: Colors.white, fontFamily: 'normal2'),
-                                  ),
-                                ),
-                              )
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
+                        );
+                      },
+                    );
+                  }
+                  return Container(
+                      height: 50,
+                      width: 50,
+                      child: Center(
+                          child: Lottie.asset("assets/images/auto_loading.json",
+                              height: 150)));
+                },
               ),
             ),
-            h(10),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "Publication la mieux notée et\nappréciée",
-                  style: TextStyle(fontFamily: "normal", fontSize: 14),
-                  textAlign: TextAlign.center,
+                  "Nos partenaires",
+                  style: TextStyle(fontFamily: "normal", fontSize: 15),
                 ),
               ],
             ),
-            h(10),
-            Box2(context,"assets/images/x4.png", "Appartement meublé","Publiée le 1 Mars 2024", "20.000F/mois"),
+            h(20),
+            CarouselSlider(
+                items: [
+                  Image.asset("assets/images/s1.png"),
+                  Image.asset("assets/images/s2.png"),
+                  Image.asset("assets/images/s3.png"),
+                  Image.asset("assets/images/s4.png"),
+                ],
+                options: CarouselOptions(
+                  height: 120,
+                  aspectRatio: 16 / 9,
+                  viewportFraction: 0.4,
+                  initialPage: 0,
+                  enableInfiniteScroll: true,
+                  reverse: false,
+                  autoPlay: true,
+                  autoPlayInterval: Duration(seconds: 3),
+                  autoPlayAnimationDuration: Duration(milliseconds: 800),
+                  autoPlayCurve: Curves.fastOutSlowIn,
+                  enlargeCenterPage: true,
+                  enlargeFactor: 0.3,
+                  scrollDirection: Axis.horizontal,
+                )),
             h(40)
           ],
         ),
@@ -498,15 +264,22 @@ class _AccueilState extends State<Accueil> {
   Box1(String path, titre) {
     return InkWell(
       onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => Resultat(),));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => Resultat(
+                titre: titre,
+              ),
+            ));
       },
       child: Container(
         margin: EdgeInsets.only(left: 15),
         height: 140,
         width: 170,
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            color: Color.fromARGB(255, 235, 235, 235),),
+          borderRadius: BorderRadius.circular(20),
+          color: Color.fromARGB(255, 235, 235, 235),
+        ),
         child: Column(
           children: [
             Container(
@@ -527,8 +300,4 @@ class _AccueilState extends State<Accueil> {
       ),
     );
   }
-
-  
 }
-
-
