@@ -35,15 +35,15 @@ class _AccueilState extends State<Accueil> {
         child: Column(
           children: [
             Container(
-              height: 200,
+              height: 180,
               child: Stack(
                 children: [
                   Positioned(
-                    top: 0,
+
                     child: Container(
-                      padding: EdgeInsets.all(10),
+                      padding: EdgeInsets.only(left: 10,right: 10,bottom: 10),
                       color: mainColor,
-                      height: 150,
+                      height: 130,
                       width: MediaQuery.of(context).size.width,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -52,7 +52,7 @@ class _AccueilState extends State<Accueil> {
                             width: 200,
                             margin: EdgeInsets.only(left: 5),
                             child: Text(
-                              "Découvrez un logement abordable de qualité depuis votre smartphone",
+                              "Découvrez un logement abordable de qualité depuis votre smartphone.",
                               style: TextStyle(
                                   fontFamily: 'normal2',
                                   fontSize: 14,
@@ -84,10 +84,11 @@ class _AccueilState extends State<Accueil> {
                           width: MediaQuery.of(context).size.width / 1.2,
                           decoration: BoxDecoration(
                               color: Color.fromARGB(255, 235, 235, 235),
-                              borderRadius: BorderRadius.circular(20)),
+                              borderRadius: BorderRadius.circular(12)),
                           child: TypeAheadField(
                             textFieldConfiguration: TextFieldConfiguration(
                               decoration: InputDecoration(
+                                  border: InputBorder.none,
                                   hintText: 'Cliquez ici pour Rechercher',
                                   hintStyle: TextStyle(
                                       fontFamily: 'normal2', fontSize: 15)),
@@ -126,7 +127,7 @@ class _AccueilState extends State<Accueil> {
             Container(
               height: 3,
               width: 120,
-              color: Colors.orange,
+              color: Color.fromARGB(255, 136, 26, 88),
             ),
             Container(
               margin: EdgeInsets.all(20),
@@ -135,7 +136,7 @@ class _AccueilState extends State<Accueil> {
                 children: [
                   Text(
                     "Recherche par catégorie",
-                    style: TextStyle(fontFamily: "normal"),
+                    style: TextStyle(fontFamily: "normal",fontSize: 19,color: Color.fromARGB(255, 136, 26, 88),),
                   ),
                   
                 ],
@@ -165,7 +166,7 @@ class _AccueilState extends State<Accueil> {
               children: [
                 Text(
                   "Mo Geuneu",
-                  style: TextStyle(fontFamily: "normal", fontSize: 15),
+                  style: TextStyle(fontFamily: "normal", fontSize: 18,color: Color.fromARGB(255, 136, 26, 88),),
                 ),
               ],
             ),
@@ -225,19 +226,53 @@ class _AccueilState extends State<Accueil> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                h(10),
                 Text(
                   "Nos partenaires",
-                  style: TextStyle(fontFamily: "normal", fontSize: 15),
+                  style: TextStyle(fontFamily: "normal", fontSize: 18,color: Color.fromARGB(255, 136, 26, 88),),
                 ),
               ],
             ),
             h(20),
             CarouselSlider(
                 items: [
-                  Image.asset("assets/images/s1.png"),
-                  Image.asset("assets/images/s2.png"),
-                  Image.asset("assets/images/s3.png"),
-                  Image.asset("assets/images/s4.png"),
+                  Padding(
+                    padding: const EdgeInsets.all(2.0),
+                    child: Container(
+                      height: 120,
+                      decoration: BoxDecoration(
+
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.white,
+                            spreadRadius: 3,
+                            offset: Offset(0, 3),
+                          ),
+                        ],
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(6)
+                      ),
+                        child: Image.asset("assets/images/s1.png",height: 120,)),
+                  ),
+
+                  Padding(
+                    padding: const EdgeInsets.all(2.0),
+                    child: Container(
+                        height: 120,
+                        decoration: BoxDecoration(
+
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.white,
+                                spreadRadius: 3,
+                                offset: Offset(0, 3),
+                              ),
+                            ],
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(6)
+                        ),
+                        child: Image.asset("assets/images/s4.png",height: 120)),
+                  ),
                 ],
                 options: CarouselOptions(
                   height: 120,
@@ -247,14 +282,14 @@ class _AccueilState extends State<Accueil> {
                   enableInfiniteScroll: true,
                   reverse: false,
                   autoPlay: true,
-                  autoPlayInterval: Duration(seconds: 3),
+                  autoPlayInterval: Duration(seconds: 4),
                   autoPlayAnimationDuration: Duration(milliseconds: 800),
-                  autoPlayCurve: Curves.fastOutSlowIn,
+                  autoPlayCurve: Curves.linear,
                   enlargeCenterPage: true,
                   enlargeFactor: 0.3,
                   scrollDirection: Axis.horizontal,
                 )),
-            h(40)
+            h(20)
           ],
         ),
       ),
@@ -279,21 +314,31 @@ class _AccueilState extends State<Accueil> {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           color: Color.fromARGB(255, 235, 235, 235),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.white,
+              spreadRadius: 3,
+              offset: Offset(0, 3),
+            ),
+          ],
         ),
         child: Column(
           children: [
-            Container(
-              height: 100,
-              width: 160,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  image: DecorationImage(
-                      image: AssetImage(path), fit: BoxFit.cover)),
+            Padding(
+              padding: const EdgeInsets.only(top: 5),
+              child: Container(
+                height: 100,
+                width: 160,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(18),
+                    image: DecorationImage(
+                        image: AssetImage(path), fit: BoxFit.cover)),
+              ),
             ),
             h(10),
             Text(
               titre,
-              style: TextStyle(fontFamily: 'normal2'),
+              style: TextStyle(fontFamily: 'normal2',fontWeight: FontWeight.w600),
             ),
           ],
         ),

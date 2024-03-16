@@ -170,7 +170,7 @@ class _DetailsState extends State<Details> {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Icon(Icons.arrow_back_ios),
+
                                   Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceAround,
@@ -204,17 +204,17 @@ class _DetailsState extends State<Details> {
                                     ],
                                   ),
                                   w(8),
-                                  Icon(Icons.arrow_forward_ios),
+
                                 ],
                               ),
-                              h(15),
+                              h(20),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
                                     "Détails",
                                     style: TextStyle(
-                                        fontFamily: 'normal', fontSize: 15),
+                                        fontFamily: 'normal', fontSize: 20),
                                   ),
                                 ],
                               ),
@@ -351,7 +351,7 @@ class _DetailsState extends State<Details> {
                                             Text(
                                               "${snapshot.data![index]['doucheInterne']}",
                                               style: TextStyle(
-                                                  fontFamily: 'normal2',
+                                                  fontFamily: 'normal2',fontWeight: FontWeight.w600,
                                                   color: Colors.red),
                                             ),
                                           ],
@@ -380,7 +380,7 @@ class _DetailsState extends State<Details> {
                                             Text(
                                               "${snapshot.data![index]['collocationDispo']}",
                                               style: TextStyle(
-                                                  fontFamily: 'normal2',
+                                                  fontFamily: 'normal2',fontWeight: FontWeight.w600,
                                                   color: Colors.red),
                                             ),
                                           ],
@@ -389,7 +389,7 @@ class _DetailsState extends State<Details> {
                                     Text(
                                       "Offres",
                                       style: TextStyle(
-                                          fontFamily: 'normal', fontSize: 16),
+                                          fontFamily: 'normal', fontSize: 18),
                                     ),
                                     
                                     h(15),

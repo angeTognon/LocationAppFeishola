@@ -95,6 +95,7 @@ Box(String path, Titre, description) {
 
 MAB(BuildContext context) {
   return AppBar(
+
     // elevation: 0,
     backgroundColor: Color.fromARGB(255, 136, 26, 88),
     title: Row(
@@ -272,7 +273,7 @@ MAB(BuildContext context) {
               ]);
         },
         child: Icon(
-          Icons.menu,
+          Icons.more_vert,
           color: Colors.white,
           size: 25,
         ),
@@ -334,7 +335,7 @@ MAB(BuildContext context) {
               ]);
         },
         child: Icon(
-          Icons.menu,
+          Icons.more_vert,
           color: Colors.white,
           size: 25,
         ),
@@ -500,7 +501,9 @@ FlashVente(BuildContext context, String path,titre) {
               padding: EdgeInsets.all(2.5),
               height: 24,
               width: 50,
-              decoration: BoxDecoration(color: mainColor),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                  color: mainColor),
               child: Center(
                 child: Text(
                   "Voir",

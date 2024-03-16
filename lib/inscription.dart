@@ -130,35 +130,40 @@ class _InscriptionState extends State<Inscription> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                      height: 150,
-                      width: 150,
+                      height: 170,
+                      width: 170,
                       child: Image.asset("assets/images/signup.png")),
                 ],
               ),
+              h(20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     "Inscription",
-                    style: TextStyle(fontSize: 18, fontFamily: 'normal'),
+                    style: TextStyle(fontSize: 22, fontFamily: 'normal'),
                   )
                 ],
               ),
-              h(20),
+              h(25),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    color: Colors.orange,
+                    decoration: BoxDecoration(
+                        color: Color.fromARGB(255, 136, 26, 88),
+                        borderRadius: BorderRadius.circular(2)
+                    ),
+
                     height: 4,
-                    width: 70,
+                    width: 90,
                   ),
                 ],
               ),
-              h(20),
+              h(25),
               Text(
-                "1- Nom & Prénoms",
-                style: TextStyle(fontSize: 14, fontFamily: 'normal'),
+                "Nom & Prénoms",
+                style: TextStyle(fontSize: 18, fontFamily: 'normal'),
               ),
               h(10),
               Container(
@@ -181,12 +186,12 @@ class _InscriptionState extends State<Inscription> {
                   ),
                 ),
               ),
-              h(10),
+              h(20),
               Text(
-                "2- Pays Actuelle (ne pas utiliser les accents)",
-                style: TextStyle(fontSize: 14, fontFamily: 'normal'),
+                "Pays Actuelle",
+                style: TextStyle(fontSize: 16, fontFamily: 'normal'),
               ),
-              h(15),
+              h(10),
               Text(
                 "Exemple : Senegal ou Benin",
                 style: TextStyle(fontSize: 14, fontFamily: 'normal2'),
@@ -218,10 +223,10 @@ class _InscriptionState extends State<Inscription> {
                       style: TextStyle(fontFamily: 'normal'),
                     )),
               ),
-              h(10),
+              h(20),
               Text(
-                "3- Numéro de téléphone",
-                style: TextStyle(fontSize: 14, fontFamily: 'normal'),
+                "Numéro de téléphone",
+                style: TextStyle(fontSize: 18, fontFamily: 'normal'),
               ),
               h(10),
               Container(
@@ -261,20 +266,11 @@ class _InscriptionState extends State<Inscription> {
                   ],
                 ),
               ),
-              h(15),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    color: Colors.orange,
-                    height: 4,
-                    width: 70,
-                  ),
-                ],
-              ),
+              h(20),
+
               Text(
-                "4- Email",
-                style: TextStyle(fontSize: 14, fontFamily: 'normal'),
+                "Email",
+                style: TextStyle(fontSize: 18, fontFamily: 'normal'),
               ),
               h(15),
               Container(
@@ -297,10 +293,10 @@ class _InscriptionState extends State<Inscription> {
                   ),
                 ),
               ),
-              h(10),
+              h(20),
               Text(
-                "5- Type de compte",
-                style: TextStyle(fontSize: 14, fontFamily: 'normal'),
+                "Type de compte",
+                style: TextStyle(fontSize: 18, fontFamily: 'normal'),
               ),
               h(15),
               InkWell(
@@ -358,8 +354,8 @@ class _InscriptionState extends State<Inscription> {
                   : Column(crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "6- Importez la photo de votre pièce d'identité",
-                          style: TextStyle(fontSize: 14, fontFamily: 'normal'),
+                          "Importez la photo de votre pièce d'identité",
+                          style: TextStyle(fontSize: 16, fontFamily: 'normal'),
                         ),
                         h(15),
                         Container(
@@ -400,12 +396,12 @@ class _InscriptionState extends State<Inscription> {
                                               )),
                                     ],
                                   )),
-                        h(10),
+                        h(20),
                       ],
                     ),
               Text(
                 "Mot de passe",
-                style: TextStyle(fontSize: 14, fontFamily: 'normal'),
+                style: TextStyle(fontSize: 18, fontFamily: 'normal'),
               ),
               h(10),
               Container(
@@ -430,16 +426,7 @@ class _InscriptionState extends State<Inscription> {
                 ),
               ),
               h(20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    color: Colors.orange,
-                    height: 4,
-                    width: 70,
-                  ),
-                ],
-              ),
+
               h(20),
               show
                   ? Row(
@@ -489,13 +476,13 @@ class _InscriptionState extends State<Inscription> {
                         ),
                       ),
                     ),
-              h(10),
+              h(20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Text(
                     "Vous avez déjà de compte ?",
-                    style: TextStyle(fontFamily: 'normal2'),
+                    style: TextStyle(fontFamily: 'normal2',fontSize: 16),
                   ),
                   InkWell(
                     onTap: () {
@@ -504,7 +491,7 @@ class _InscriptionState extends State<Inscription> {
                     },
                     child: Text(
                       "Se connecter",
-                      style: TextStyle(fontFamily: 'normal'),
+                      style: TextStyle(fontFamily: 'normal',fontSize: 16),
                     ),
                   ),
                 ],

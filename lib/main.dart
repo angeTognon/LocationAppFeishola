@@ -72,6 +72,9 @@ class _MyAppState extends State<MyApp> {
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
+            appBarTheme: AppBarTheme(
+              iconTheme: IconThemeData(color: Colors.white), // Définir la couleur de l'icône de la barre d'applications
+            ),
             primaryColor: const Color(0xFF202328),
             backgroundColor: const Color(0xFF121710)),
         // home: eya?Accueil():  OnBoarding()

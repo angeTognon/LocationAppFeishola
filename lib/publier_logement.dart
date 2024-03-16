@@ -191,7 +191,7 @@ class _PublierState extends State<Publier> {
                 children: [
                   Text(
                     "Publier un logement",
-                    style: TextStyle(fontSize: 16, fontFamily: 'normal'),
+                    style: TextStyle(fontSize: 22, fontFamily: 'normal'),
                   )
                 ],
               ),
@@ -208,8 +208,8 @@ class _PublierState extends State<Publier> {
               ),
               h(20),
               Text(
-                "1- Que voulez-vous publier ?",
-                style: TextStyle(fontSize: 14, fontFamily: 'normal'),
+                "Que voulez-vous publier ?",
+                style: TextStyle(fontSize: 18, fontFamily: 'normal'),
               ),
               h(10),
               Container(
@@ -240,8 +240,8 @@ class _PublierState extends State<Publier> {
               /*  */
               h(20),
               Text(
-                "2- Prix du logement",
-                style: TextStyle(fontSize: 14, fontFamily: 'normal'),
+                "Prix du logement",
+                style: TextStyle(fontSize: 18, fontFamily: 'normal'),
               ),
               h(10),
               Container(
@@ -268,8 +268,8 @@ class _PublierState extends State<Publier> {
               /*  */
               h(10),
               Text(
-                "3-Pays",
-                style: TextStyle(fontSize: 14, fontFamily: 'normal'),
+                "Pays",
+                style: TextStyle(fontSize: 18, fontFamily: 'normal'),
               ),
               h(10),
               Container(
@@ -287,8 +287,8 @@ class _PublierState extends State<Publier> {
               h(10),
               /*  */
               Text(
-                "4- Ville",
-                style: TextStyle(fontSize: 14, fontFamily: 'normal'),
+                "Ville",
+                style: TextStyle(fontSize: 18, fontFamily: 'normal'),
               ),
               h(10),
               Container(
@@ -319,8 +319,8 @@ class _PublierState extends State<Publier> {
               h(10),
               /*  */
               Text(
-                "5- Quartier",
-                style: TextStyle(fontSize: 14, fontFamily: 'normal'),
+                "Quartier",
+                style: TextStyle(fontSize: 18, fontFamily: 'normal'),
               ),
               h(10),
               Container(
@@ -345,8 +345,8 @@ class _PublierState extends State<Publier> {
               ),
               h(10),
               Text(
-                "6- Petite Description de la location",
-                style: TextStyle(fontSize: 14, fontFamily: 'normal'),
+                "Petite Description de la location",
+                style: TextStyle(fontSize: 18, fontFamily: 'normal'),
               ),
               h(10),
               Container(
@@ -385,8 +385,8 @@ class _PublierState extends State<Publier> {
               ),
               h(10),
               Text(
-                "7- Votre logement possède une douche interne ou externe  ?",
-                style: TextStyle(fontSize: 14, fontFamily: 'normal'),
+                "Votre logement possède une douche interne ou externe  ?",
+                style: TextStyle(fontSize: 18, fontFamily: 'normal'),
               ),
               h(15),
               Row(
@@ -449,8 +449,8 @@ class _PublierState extends State<Publier> {
 
               h(10),
               Text(
-                "8- Peut on faire une collocation dans votre logement ?",
-                style: TextStyle(fontSize: 14, fontFamily: 'normal'),
+                "Peut on faire une collocation dans votre logement ?",
+                style: TextStyle(fontSize: 18, fontFamily: 'normal'),
               ),
               h(15),
               Row(
@@ -504,8 +504,8 @@ class _PublierState extends State<Publier> {
               ),
               h(10),
               Text(
-                "9- Importez une photo du logement\n(PHOTO n°1)",
-                style: TextStyle(fontSize: 14, fontFamily: 'normal'),
+                "Importez une photo du logement\n(PHOTO n°1)",
+                style: TextStyle(fontSize: 18, fontFamily: 'normal'),
               ),
               h(15),
               Container(
@@ -596,7 +596,7 @@ class _PublierState extends State<Publier> {
                             "Publier",
                             style: TextStyle(
                               color: Colors.white,
-                              fontSize: 16,
+                              fontSize: 17,
                               fontFamily: 'normal2',
                             ),
                           ),

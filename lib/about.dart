@@ -19,7 +19,7 @@ class _AboutState extends State<About> {
           children: [
             Row(mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("A propos de nous",style: TextStyle(fontFamily: 'normal',fontSize: 16),),
+                Text("A propos de nous",style: TextStyle(fontFamily: 'normal',fontSize: 22),),
               ],
             ),
             Row(mainAxisAlignment: MainAxisAlignment.center,
@@ -34,7 +34,7 @@ class _AboutState extends State<About> {
             Text("Notre mission est de faciliter la recherche de logements en mettant en relation les locataires potentiels avec les propriétaires et les agences immobilières de confiance. Nous comprenons les défis et les frustrations associés à la recherche de logements, c'est pourquoi nous nous efforçons de rendre ce processus aussi simple et efficace que possible.",style: TextStyle(fontFamily: 'normal2',),textAlign: TextAlign.justify,),
 
  h(15),
-            Text("Fonctionnalités principales de Guidi Immo :",style: TextStyle(fontFamily: 'normal',),textAlign: TextAlign.justify,),
+            Text("Fonctionnalités principales de Guidi Immo :",style: TextStyle(fontFamily: 'normal',fontSize: 16),textAlign: TextAlign.justify,),
 
  h(15),
             Text("1- Recherche avancée : Parcourez une vaste sélection d'annonces de logements au Sénégal et filtrez les résultats en fonction de vos critères spécifiques tels que l'emplacement, le type de logement, le prix, le nombre de chambres, etc..",style: TextStyle(fontFamily: 'normal2',),textAlign: TextAlign.justify,),

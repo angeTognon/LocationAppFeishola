@@ -85,34 +85,39 @@ class _ConnexionState extends State<Connexion> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    height: 150,width: 150,
+                    height: 170,width: 170,
                     child: Image.asset("assets/images/login.png")),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Connexion",
-                    style: TextStyle(fontSize: 18, fontFamily: 'normal'),
-                  )
                 ],
               ),
               h(20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  Text(
+                    "Connexion",
+                    style: TextStyle(fontSize: 22, fontFamily: 'normal'),
+                  )
+                ],
+              ),
+              h(30),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
                   Container(
-                    color: Colors.orange,
+                    decoration: BoxDecoration(
+                        color: Color.fromARGB(255, 136, 26, 88),
+                      borderRadius: BorderRadius.circular(2)
+                    ),
+
                     height: 4,
-                    width: 70,
+                    width: 90,
                   ),
                 ],
               ),
               h(20),
               Text(
                 "Email",
-                style: TextStyle(fontSize: 14, fontFamily: 'normal'),
+                style: TextStyle(fontSize: 18, fontFamily: 'normal'),
               ),
               h(15),
               Container(
@@ -135,10 +140,10 @@ class _ConnexionState extends State<Connexion> {
                   ),
                 ),
               ),
-              h(10),
+              h(20),
               Text(
                 "Mot de passe",
-                style: TextStyle(fontSize: 14, fontFamily: 'normal'),
+                style: TextStyle(fontSize: 18, fontFamily: 'normal'),
               ),
               h(10),
               Container(
@@ -166,11 +171,7 @@ class _ConnexionState extends State<Connexion> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Container(
-                    color: Colors.orange,
-                    height: 4,
-                    width: 70,
-                  ),
+
                 ],
               ),
               h(20),
@@ -199,14 +200,14 @@ class _ConnexionState extends State<Connexion> {
               Row(mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Text("Vous n'avez pas de compte ?",style: TextStyle(
-                    fontFamily: 'normal2'
+                    fontFamily: 'normal2',fontSize: 16
                   ),),
                   InkWell(
                     onTap: () {
                       Navigator.push(context, MaterialPageRoute(builder: (context) => Inscription()));
                     },
                     child: Text("S'inscrire",style: TextStyle(
-                      fontFamily: 'normal'
+                      fontFamily: 'normal',fontSize: 16
                     ),),
                   ),
                 ],
