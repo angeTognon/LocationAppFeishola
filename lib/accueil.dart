@@ -166,7 +166,7 @@ class _AccueilState extends State<Accueil> {
               children: [
                 Text(
                   "Mo Geuneu",
-                  style: TextStyle(fontFamily: "normal", fontSize: 18,color: Color.fromARGB(255, 136, 26, 88),),
+                  style: TextStyle(fontFamily: "normal", fontSize: 20,color: Color.fromARGB(255, 136, 26, 88),),
                 ),
               ],
             ),
@@ -229,7 +229,7 @@ class _AccueilState extends State<Accueil> {
                 h(10),
                 Text(
                   "Nos partenaires",
-                  style: TextStyle(fontFamily: "normal", fontSize: 18,color: Color.fromARGB(255, 136, 26, 88),),
+                  style: TextStyle(fontFamily: "normal", fontSize: 20,color: Color.fromARGB(255, 136, 26, 88),),
                 ),
               ],
             ),
@@ -312,8 +312,9 @@ class _AccueilState extends State<Accueil> {
         height: 140,
         width: 170,
         decoration: BoxDecoration(
+            border: Border.all(color: Color.fromARGB(255, 136, 26, 88)),
           borderRadius: BorderRadius.circular(20),
-          color: Color.fromARGB(255, 235, 235, 235),
+          color: Colors.white,
           boxShadow: [
             BoxShadow(
               color: Colors.white,

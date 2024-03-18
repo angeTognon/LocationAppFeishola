@@ -346,92 +346,107 @@ MAB(BuildContext context) {
 }
 
 Box2(BuildContext context, String path, titre, titre2, montant, int id) {
-  return Container(
-    margin: EdgeInsets.only(left: 20, right: 20, bottom: 20),
-    height: 280,
-    width: MediaQuery.of(context).size.width / 1.3,
-    decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: Colors.orange)),
-    child: Column(
-      children: [
-        Container(
-          height: 180,
-          width: 342,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              image: DecorationImage(
-                  image: NetworkImage(path), fit: BoxFit.cover)),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(10),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+  return Padding(
+    padding: const EdgeInsets.all(8.0),
+    child: Card(
+
+      child: Container(
+
+        height: 280,
+        width: MediaQuery.of(context).size.width / 1.1,
+        decoration: BoxDecoration(
+
+
+
+            borderRadius: BorderRadius.circular(15),
+            color: Colors.white
+            // border: Border.all(color: Colors.orange)
+      ),
+        child: Column(
+          children: [
+            Container(
+              height: 180,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                  image: DecorationImage(
+                      image: NetworkImage(path), fit: BoxFit.cover)),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    titre,
-                    style: TextStyle(fontFamily: 'normal'),
-                  ),
-                  h(16),
-                  Text(
-                    titre2,
-                    style: TextStyle(fontFamily: 'normal2'),
-                  ),
-                ],
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    height: 40,
-                    padding: EdgeInsets.only(
-                      left: 10,
-                      right: 10,
-                      top: 5,
-                    ),
-                    decoration: BoxDecoration(
-                        color: Color.fromARGB(137, 255, 153, 0),
-                        borderRadius: BorderRadius.circular(5)),
-                    child: Center(
-                      child: Text(
-                        montant + " FCFA",
-                        style: TextStyle(fontSize: 14, fontFamily: 'normal'),
-                        textAlign: TextAlign.center,
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        titre,
+                        style: TextStyle(fontFamily: 'normal'),
                       ),
-                    ),
+                      h(16),
+                      Text(
+                        titre2,
+                        style: TextStyle(fontFamily: 'normal2'),
+                      ),
+                    ],
                   ),
-                  h(5),
-                  InkWell(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                Details(imgPath: path, type: titre, id: id),
-                          ));
-                    },
-                    child: Container(
-                      padding: EdgeInsets.only(left: 25, right: 25),
-                      height: 30,
-                      decoration: BoxDecoration(color: mainColor),
-                      child: Center(
-                        child: Text(
-                          "Consulter",
-                          style: TextStyle(
-                              color: Colors.white, fontFamily: 'normal2'),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        height: 40,
+                        padding: EdgeInsets.only(
+                          left: 10,
+                          right: 10,
+                          top: 5,
+                        ),
+                        decoration: BoxDecoration(
+                            color: Color.fromARGB(137, 255, 153, 0),
+                            borderRadius: BorderRadius.circular(8)),
+                        child: Center(
+                          child: Text(
+                            montant + " FCFA",
+                            style: TextStyle(fontSize: 14, fontFamily: 'normal'),
+                            textAlign: TextAlign.center,
+                          ),
                         ),
                       ),
-                    ),
+                      h(5),
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    Details(imgPath: path, type: titre, id: id),
+                              ));
+                        },
+                        child: Container(
+                          padding: EdgeInsets.only(left: 25, right: 25),
+                          height: 30,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                              color: mainColor),
+                          child: Center(
+                            child: Text(
+                              "Consulter",
+                              style: TextStyle(
+                                  color: Colors.white, fontFamily: 'normal2'),
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
                   )
                 ],
-              )
-            ],
-          ),
-        )
-      ],
+              ),
+            )
+          ],
+        ),
+      ),
+        color: Colors.white,
+      elevation: 8,
     ),
   );
 }

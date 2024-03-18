@@ -110,7 +110,7 @@ class _ResultatState extends State<Resultat> {
                 children: [
                   Text(
                     "Résultats de recherche",
-                    style: TextStyle(fontFamily: 'normal', fontSize: 16),
+                    style: TextStyle(fontFamily: 'normal', fontSize: 20),
                   ),
                 ],
               ),
@@ -127,7 +127,7 @@ class _ResultatState extends State<Resultat> {
                 margin: EdgeInsets.only(left: 20, right: 20),
                 child: Text(
                   "Filtrer par",
-                  style: TextStyle(fontFamily: 'normal', fontSize: 15),
+                  style: TextStyle(fontFamily: 'normal', fontSize: 18),
                 ),
               ),
               h(15),
@@ -138,7 +138,7 @@ class _ResultatState extends State<Resultat> {
                   children: [
                     Text(
                       "Prix",
-                      style: TextStyle(fontFamily: 'normal2', fontSize: 15),
+                      style: TextStyle(fontFamily: 'normal2', fontSize: 17,fontWeight: FontWeight.w600),
                     ),
                     DropdownButton(
                       value: dropdownvalue,
@@ -165,8 +165,8 @@ class _ResultatState extends State<Resultat> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "titre",
-                      style: TextStyle(fontFamily: 'normal2', fontSize: 15),
+                      "Titre",
+                      style: TextStyle(fontFamily: 'normal2', fontSize: 17,fontWeight: FontWeight.w600),
                     ),
                     DropdownButton(
                       value: dropdownvalueVille,
