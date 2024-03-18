@@ -382,12 +382,12 @@ Box2(BuildContext context, String path, titre, titre2, montant, int id) {
                     children: [
                       Text(
                         titre,
-                        style: TextStyle(fontFamily: 'normal'),
+                        style: TextStyle(fontFamily: 'normal', fontSize: 17),
                       ),
                       h(16),
                       Text(
                         titre2,
-                        style: TextStyle(fontFamily: 'normal2'),
+                        style: TextStyle(fontFamily: 'normal2', fontSize: 17),
                       ),
                     ],
                   ),

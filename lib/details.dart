@@ -125,7 +125,7 @@ class _DetailsState extends State<Details> {
                                         child: Text(
                                           widget.type,
                                           style: TextStyle(
-                                              fontSize: 14,
+                                              fontSize: 17,
                                               fontFamily: 'normal2'),
                                           textAlign: TextAlign.center,
                                         ),
@@ -145,7 +145,7 @@ class _DetailsState extends State<Details> {
                                         child: Text(
                                           "Disponible\n",
                                           style: TextStyle(
-                                              fontSize: 14,
+                                              fontSize: 17,
                                               fontFamily: 'normal2'),
                                           textAlign: TextAlign.center,
                                         ),
@@ -230,14 +230,14 @@ class _DetailsState extends State<Details> {
                                           "Prix : ",
                                           style: TextStyle(
                                               fontFamily: 'normal2',
-                                              fontSize: 15),
+                                              fontSize: 18),
                                         ),
                                         Text(
                                           "${snapshot.data![index]['prix']}",
                                           style: TextStyle(
                                               fontFamily: 'normal2',color: Colors.orange,
                                               fontWeight: FontWeight.bold,
-                                              fontSize: 15),
+                                              fontSize: 16),
                                         ),
                                       ],
                                     ),
@@ -250,14 +250,14 @@ class _DetailsState extends State<Details> {
                                           "Pays : ",
                                           style: TextStyle(
                                               fontFamily: 'normal2',
-                                              fontSize: 15),
+                                              fontSize: 18),
                                         ),
                                         Text(
                                           "Sénégal",
                                           style: TextStyle(
                                               fontFamily: 'normal2',
                                               fontWeight: FontWeight.bold,
-                                              fontSize: 15),
+                                              fontSize: 16),
                                         ),
                                       ],
                                     ),
@@ -270,14 +270,14 @@ class _DetailsState extends State<Details> {
                                           "Ville : ",
                                           style: TextStyle(
                                               fontFamily: 'normal2',
-                                              fontSize: 15),
+                                              fontSize: 18),
                                         ),
                                         Text(
                                           "${snapshot.data![index]['ville']}",
                                           style: TextStyle(
                                               fontFamily: 'normal2',
                                               fontWeight: FontWeight.bold,
-                                              fontSize: 15),
+                                              fontSize: 16),
                                         ),
                                       ],
                                     ),
@@ -290,14 +290,14 @@ class _DetailsState extends State<Details> {
                                           "Quartier : ",
                                           style: TextStyle(
                                               fontFamily: 'normal2',
-                                              fontSize: 15),
+                                              fontSize: 18),
                                         ),
                                         Text(
                                           "${snapshot.data![index]['quartier']}",
                                           style: TextStyle(
                                               fontFamily: 'normal2',
                                               fontWeight: FontWeight.bold,
-                                              fontSize: 15),
+                                              fontSize: 16),
                                         ),
                                       ],
                                     ),
@@ -314,14 +314,14 @@ class _DetailsState extends State<Details> {
                                               "Description : ",
                                               style: TextStyle(
                                                   fontFamily: 'normal2',
-                                                  fontSize: 15),
+                                                  fontSize: 18),
                                             ),
                                             Text(
                                               "${snapshot.data![index]['descriptionn']}",
                                               style: TextStyle(
                                                   fontFamily: 'normal2',
                                                   fontWeight: FontWeight.bold,
-                                                  fontSize: 15),
+                                                  fontSize: 16),
                                             ),
                                           ],
                                         ),
@@ -346,13 +346,13 @@ class _DetailsState extends State<Details> {
                                             Text(
                                               "Douche Interne ?",
                                               style: TextStyle(
-                                                  fontFamily: 'normal2'),
+                                                  fontFamily: 'normal2', fontSize: 18),
                                             ),
                                             Text(
                                               "${snapshot.data![index]['doucheInterne']}",
                                               style: TextStyle(
                                                   fontFamily: 'normal2',fontWeight: FontWeight.w600,
-                                                  color: Colors.red),
+                                                  color: Colors.red, fontSize: 16),
                                             ),
                                           ],
                                         )),
@@ -375,13 +375,13 @@ class _DetailsState extends State<Details> {
                                             Text(
                                               "Collocation disponible ?",
                                               style: TextStyle(
-                                                  fontFamily: 'normal2'),
+                                                  fontFamily: 'normal2', fontSize: 18),
                                             ),
                                             Text(
                                               "${snapshot.data![index]['collocationDispo']}",
                                               style: TextStyle(
                                                   fontFamily: 'normal2',fontWeight: FontWeight.w600,
-                                                  color: Colors.red),
+                                                  color: Colors.red ,fontSize: 16),
                                             ),
                                           ],
                                         )),
@@ -389,7 +389,7 @@ class _DetailsState extends State<Details> {
                                     Text(
                                       "Offres",
                                       style: TextStyle(
-                                          fontFamily: 'normal', fontSize: 18),
+                                          fontFamily: 'normal', fontSize: 20),
                                     ),
                                     
                                     h(15),
@@ -430,7 +430,7 @@ class _DetailsState extends State<Details> {
                                             content: Container(
                                               height: 300,width: 300,
                                               decoration: BoxDecoration(
-                                                color: Colors.white
+
                                               ),
                                               child: Column(crossAxisAlignment: CrossAxisAlignment.start,
                                                 children: [
@@ -453,7 +453,7 @@ class _DetailsState extends State<Details> {
                                                           print(dateRdv);
                                                         });
                                                       }
-                                                      }, child: Text("Choisir"))
+                                                      }, child: Text("Choisir",style: TextStyle(color: Colors.white)))
                                                     ],
                                                   ),
                                                   Text(dateRdv,style: TextStyle(fontFamily: 'normal'),),
@@ -485,7 +485,7 @@ class _DetailsState extends State<Details> {
                                                         }
                                                         });
                                                         
-                                                      }, child: Text("Choisir"))
+                                                      }, child: Text("Choisir",style: TextStyle(color: Colors.white)))
                                                     ],
                                                   ),
                                                   Text(heureRdv,style: TextStyle(fontFamily: 'normal'),),
@@ -567,7 +567,7 @@ class _DetailsState extends State<Details> {
                                                         BorderRadius.circular(
                                                             20)),
                                                 child: Center(
-                                                  child: Icon(Icons.play_arrow),
+                                                  child: Icon(Icons.arrow_forward_ios_sharp),
                                                 ),
                                               )
                                             ],
@@ -580,7 +580,7 @@ class _DetailsState extends State<Details> {
                                           actions: [
                                              ElevatedButton(style: ElevatedButton.styleFrom(primary: Color.fromARGB(255, 79, 152, 255)),onPressed: (){
                                                 Navigator.pop(context);
-                                              }, child: Text("Fermer")),
+                                              }, child: Text("Fermer",)),
                                                ElevatedButton(style: ElevatedButton.styleFrom(primary: mainColor),onPressed: (){
                                                 // Navigator.pop(context);
                                               }, child: Text("Payer")),
@@ -634,7 +634,7 @@ class _DetailsState extends State<Details> {
                                                         BorderRadius.circular(
                                                             20)),
                                                 child: Center(
-                                                  child: Icon(Icons.play_arrow),
+                                                  child: Icon(Icons.arrow_forward_ios_sharp),
                                                 ),
                                               )
                                             ],
